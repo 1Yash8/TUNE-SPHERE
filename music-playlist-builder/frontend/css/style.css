@@ -1,0 +1,42 @@
+/* Dark theme inspired by screenshot */
+:root {
+  --bg: #0f1720;
+  --panel: #15202b;
+  --muted: #9aa6b2;
+  --accent: #13c48b;
+}
+
+* { box-sizing: border-box; font-family: Inter, system-ui, Arial; color: #e6eef6; }
+html,body { height:100%; margin:0; background: linear-gradient(180deg,#0b1220,#0f1720); }
+.app { display:flex; min-height:100vh; }
+.sidebar { width:240px; background:#071019; padding:24px; display:flex; flex-direction:column; justify-content:space-between; }
+.brand { font-weight:700; color: #22d3a1; font-size:20px; display:flex; align-items:center; gap:8px; }
+.sidebar nav { margin-top:24px; display:flex; flex-direction:column; gap:12px; }
+.sidebar a { color:var(--muted); text-decoration:none; padding:10px; border-radius:8px; display:block; cursor:pointer; }
+.sidebar a.active { background: rgba(255,255,255,0.03); color:#fff; }
+.main { flex:1; padding:28px; }
+h1 { font-size:36px; margin:0 0 12px 0; }
+h2 { font-size:20px; margin:18px 0; color:#dbeafe; }
+
+/* grid & cards */
+.grid { display:flex; gap:16px; flex-wrap:wrap; }
+.card { background: #0f1a23; padding:12px; border-radius:10px; display:flex; gap:12px; align-items:center; min-width:260px; box-shadow: 0 4px 10px rgba(2,6,23,0.6); }
+.card img { width:56px; height:56px; border-radius:6px; object-fit:cover; }
+.card .meta { display:flex; flex-direction:column; }
+.card .title { font-weight:600; }
+.card .artist { color:var(--muted); font-size:13px; }
+
+/* playlists grid */
+.playlist-card { width:200px; height:140px; border-radius:12px; overflow:hidden; background:#0b1620; display:flex; align-items:flex-end; padding:12px; }
+.playlist-card img { position:absolute; width:100%; height:100%; object-fit:cover; filter:brightness(0.65); }
+.playlist-card .pl-title { z-index:2; font-weight:700; }
+
+/* player bar */
+.player-bar { position:fixed; left:0; right:0; bottom:0; background:#0b1720; padding:12px 24px; display:flex; justify-content:space-between; align-items:center; border-top:1px solid rgba(255,255,255,0.03); }
+.controls button { background:transparent; border:0; color:#fff; font-size:18px; cursor:pointer; padding:8px; }
+
+/* small screens */
+@media (max-width:900px){
+  .sidebar { display:none; }
+  .playlist-card { width:140px; }
+}

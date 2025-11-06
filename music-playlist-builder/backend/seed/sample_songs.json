@@ -1,0 +1,34 @@
+[
+  {
+    "title": "Electric Dreams",
+    "artist": "Neon Pulse",
+    "album": "Night Lights",
+    "duration": 210,
+    "audioUrl": "",
+    "coverUrl": "/assets/covers/cover1.svg"
+  },
+  {
+    "title": "Thunder Road",
+    "artist": "Rock Legends",
+    "album": "Road Trip",
+    "duration": 185,
+    "audioUrl": "",
+    "coverUrl": "/assets/covers/cover2.svg"
+  },
+  {
+    "title": "Midnight City",
+    "artist": "Urban Echoes",
+    "album": "Skyline",
+    "duration": 240,
+    "audioUrl": "",
+    "coverUrl": "/assets/covers/cover3.svg"
+  },
+  {
+    "title": "Summer Vibes",
+    "artist": "Tropical Beats",
+    "album": "Sunset",
+    "duration": 200,
+    "audioUrl": "",
+    "coverUrl": "/assets/covers/cover4.svg"
+  }
+]
