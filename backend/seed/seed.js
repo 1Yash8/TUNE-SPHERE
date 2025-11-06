@@ -1,28 +1,58 @@
-/*
-  seed/seed.js
-  Usage:
-    node seed/seed.js
-  Make sure MONGO_URI is set in environment or .env
-*/
-const mongoose = require('mongoose');
-const fs = require('fs');
-require('dotenv').config();
-const Song = require('../models/Song');
-const Playlist = require('../models/Playlist');
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+import Song from '../models/Song.js';
 
-const MONGO = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/tune_sphere';
-mongoose.connect(MONGO, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(async () => {
+dotenv.config();
+
+const MONGO_URI = process.env.MONGO_URI;
+
+const songs = [
+  {
+    title: 'Electric Dreams',
+    artist: 'Neon Pulse',
+    album: 'Night Lights',
+    duration: 210,
+    audioUrl: '/assets/audio/demo1.mp3',
+    coverUrl: '/assets/covers/cover1.svg',
+  },
+  {
+    title: 'Thunder Road',
+    artist: 'Rock Legends',
+    album: 'Road Trip',
+    duration: 185,
+    audioUrl: '/assets/audio/demo2.mp3',
+    coverUrl: '/assets/covers/cover2.svg',
+  },
+  {
+    title: 'Midnight City',
+    artist: 'Urban Echoes',
+    album: 'Skyline',
+    duration: 240,
+    audioUrl: '/assets/audio/demo3.mp3',
+    coverUrl: '/assets/covers/cover3.svg',
+  },
+  {
+    title: 'Summer Vibes',
+    artist: 'Tropical Beats',
+    album: 'Sunset',
+    duration: 200,
+    audioUrl: '/assets/audio/demo4.mp3',
+    coverUrl: '/assets/covers/cover4.svg',
+  },
+];
+
+async function seed() {
+  try {
+    await mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
     console.log('Connected to Mongo for seeding...');
-    const data = JSON.parse(fs.readFileSync(__dirname + '/sample_songs.json', 'utf8'));
     await Song.deleteMany({});
-    await Playlist.deleteMany({});
-    const created = await Song.insertMany(data);
-    const pl = new Playlist({ name: 'My Favorites', songs: created.slice(0,2).map(s => s._id) });
-    await pl.save();
-    console.log('Seed complete. Songs inserted:', created.length);
-    process.exit(0);
-  }).catch(err => {
-    console.error('Seed error', err.message);
+    await Song.insertMany(songs);
+    console.log('Seed complete. Songs inserted:', songs.length);
+    process.exit();
+  } catch (err) {
+    console.error('Seeding error:', err);
     process.exit(1);
-  });
+  }
+}
+
+seed();
